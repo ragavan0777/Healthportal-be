@@ -50,7 +50,7 @@ public class DoctorService {
     // Search doctors
     public List<Doctors> searchDoctors(String name, String specialty) {
 
-        // FIX: handle null + empty values
+        // handle null + empty values
         name = (name == null) ? "" : name.trim();
         specialty = (specialty == null) ? "" : specialty.trim();
 

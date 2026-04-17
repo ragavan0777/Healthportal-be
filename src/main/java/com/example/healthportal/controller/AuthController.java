@@ -99,7 +99,7 @@ public class AuthController {
         // Check password
         if (passwordEncoder.matches(user.getPassword(), foundUser.getPassword())) {
 
-            //  Generate JWT (contains role + userId)
+            //  Generate JWT
             return jwtService.generateToken(foundUser);
 
         } else {

@@ -17,7 +17,6 @@ public class ApplicationConfig {
 
     private final CustomUserDetailsService userDetailsService;
 
-    //  ADD @Bean HERE
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

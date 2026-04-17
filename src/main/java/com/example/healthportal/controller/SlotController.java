@@ -21,7 +21,6 @@ public class SlotController {
             this.slotService = slotService;
         }
 
-        // THIS IS WHAT YOUR FRONTEND NEEDS
         @GetMapping("/{doctorId}/{date}")
         public List<Slot> getSlots(
                 @PathVariable Long doctorId,
