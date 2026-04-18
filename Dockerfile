@@ -34,16 +34,6 @@ ENV DB_PASSWORD=password
 ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75.0", "-jar", "app.jar"]
 
 # Expose the application port
-FROM openjdk:17-jdk-slim
-
-WORKDIR /app
-
-COPY . .
-
-RUN chmod +x mvnw
-
-RUN ./mvnw clean package -DskipTests
-
 EXPOSE 5000
 
-CMD ["java", "-jar", "target/*.jar"]
+
