@@ -33,10 +33,16 @@ public class SecurityConfig{
         config.setAllowCredentials(true);
         config.setAllowedOrigins(List.of(
                 "http://127.0.0.1:5500",
-                "http://127.0.0.1:5501"
+                "http://127.0.0.1:5501",
+                "https://sensational-dragon-7d919c.netlify.app"
+
         )); // frontend
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
+        config.addAllowedHeader("*");
+        config.setAllowedMethods(List.of(
+                "GET","POST","DELETE","OPTIONS"
+        ));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
