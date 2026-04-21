@@ -24,31 +24,6 @@ import java.util.List;
 
 public class SecurityConfig{
 
-
-//cors to allow two portnumbers
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration config = new CorsConfiguration();
-//
-//        config.setAllowCredentials(true);
-//        config.setAllowedOrigins(List.of(
-//                "http://127.0.0.1:5500",
-//                "http://127.0.0.1:5501",
-//                "https://sensational-dragon-7d919c.netlify.app/"
-//
-//        )); // frontend
-//        config.addAllowedHeader("*");
-//        config.addAllowedMethod("*");
-//        config.addAllowedHeader("*");
-//        config.setAllowedMethods(List.of(
-//                "GET","POST","DELETE","OPTIONS"
-//        ));
-//
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", config);
-//
-//        return source;
-//    }
 @Bean
 public CorsConfigurationSource corsConfigurationSource() {
 
@@ -59,7 +34,7 @@ public CorsConfigurationSource corsConfigurationSource() {
     config.setAllowedOrigins(List.of(
             "http://127.0.0.1:5500",
             "http://127.0.0.1:5501",
-            "https://caresync-healthportal.netlify.app"
+            "https://caresync-healthportal.netlify.app/"
     ));
 
     config.setAllowedHeaders(List.of("*"));
@@ -88,41 +63,38 @@ public CorsConfigurationSource corsConfigurationSource() {
                 //  proper CORS usage
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
 
-//                .authorizeHttpRequests(auth -> auth
-//
-//                        .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-//
-//                        // PUBLIC
-//                        .requestMatchers("/api/auth/**").permitAll()
-//                        .requestMatchers("/api/doctor/public/**").permitAll()
-//
-//                        //  allow USER to access patient APIs
-//                        .requestMatchers("/api/patient/**").hasRole("USER")
-//
-//                        //  allow both roles
-//                        .requestMatchers("/api/doctor/getall").hasAnyRole("USER","DOCTOR")
-//                        .requestMatchers("/api/doctor/search").hasAnyRole("USER","DOCTOR")
-//                        .requestMatchers("/api/slots/**").hasAnyRole("USER","DOCTOR")
-//
-//                        //  doctor-only endpoints
-//                        .requestMatchers("/api/doctor/**").hasRole("DOCTOR")
-//
-//                        //  booking = USER only
-//                        .requestMatchers(HttpMethod.POST,"/api/appointments/book-slot").hasRole("USER")
-//
-//                        //  doctor actions
-//                        .requestMatchers(HttpMethod.PUT,"/api/appointments/**").hasRole("DOCTOR")
-//
-//                        //  allow USER to view their appointments
-//                        .requestMatchers(HttpMethod.GET,"/api/appointments/**").hasAnyRole("USER","DOCTOR")
-//
-//                        .anyRequest().authenticated()
-//                )
-
-
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()
+
+                        .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+
+                        // PUBLIC
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/doctor/public/**").permitAll()
+
+                        //  allow USER to access patient APIs
+                        .requestMatchers("/api/patient/**").hasRole("USER")
+
+                        //  allow both roles
+                        .requestMatchers("/api/doctor/getall").hasAnyRole("USER","DOCTOR")
+                        .requestMatchers("/api/doctor/search").hasAnyRole("USER","DOCTOR")
+                        .requestMatchers("/api/slots/**").hasAnyRole("USER","DOCTOR")
+
+                        //  doctor-only endpoints
+                        .requestMatchers("/api/doctor/**").hasRole("DOCTOR")
+
+                        //  booking = USER only
+                        .requestMatchers(HttpMethod.POST,"/api/appointments/book-slot").hasRole("USER")
+
+                        //  doctor actions
+                        .requestMatchers(HttpMethod.PUT,"/api/appointments/**").hasRole("DOCTOR")
+
+                        //  allow USER to view their appointments
+                        .requestMatchers(HttpMethod.GET,"/api/appointments/**").hasAnyRole("USER","DOCTOR")
+
+                        .anyRequest().authenticated()
                 )
+
+
 
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
