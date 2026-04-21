@@ -86,35 +86,40 @@ public CorsConfigurationSource corsConfigurationSource() {
                 //  proper CORS usage
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
 
+//                .authorizeHttpRequests(auth -> auth
+//
+//                        .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+//
+//                        // PUBLIC
+//                        .requestMatchers("/api/auth/**").permitAll()
+//                        .requestMatchers("/api/doctor/public/**").permitAll()
+//
+//                        //  allow USER to access patient APIs
+//                        .requestMatchers("/api/patient/**").hasRole("USER")
+//
+//                        //  allow both roles
+//                        .requestMatchers("/api/doctor/getall").hasAnyRole("USER","DOCTOR")
+//                        .requestMatchers("/api/doctor/search").hasAnyRole("USER","DOCTOR")
+//                        .requestMatchers("/api/slots/**").hasAnyRole("USER","DOCTOR")
+//
+//                        //  doctor-only endpoints
+//                        .requestMatchers("/api/doctor/**").hasRole("DOCTOR")
+//
+//                        //  booking = USER only
+//                        .requestMatchers(HttpMethod.POST,"/api/appointments/book-slot").hasRole("USER")
+//
+//                        //  doctor actions
+//                        .requestMatchers(HttpMethod.PUT,"/api/appointments/**").hasRole("DOCTOR")
+//
+//                        //  allow USER to view their appointments
+//                        .requestMatchers(HttpMethod.GET,"/api/appointments/**").hasAnyRole("USER","DOCTOR")
+//
+//                        .anyRequest().authenticated()
+//                )
+
+
                 .authorizeHttpRequests(auth -> auth
-
-                        .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-
-                        // PUBLIC
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/doctor/public/**").permitAll()
-
-                        //  allow USER to access patient APIs
-                        .requestMatchers("/api/patient/**").hasRole("USER")
-
-                        //  allow both roles
-                        .requestMatchers("/api/doctor/getall").hasAnyRole("USER","DOCTOR")
-                        .requestMatchers("/api/doctor/search").hasAnyRole("USER","DOCTOR")
-                        .requestMatchers("/api/slots/**").hasAnyRole("USER","DOCTOR")
-
-                        //  doctor-only endpoints
-                        .requestMatchers("/api/doctor/**").hasRole("DOCTOR")
-
-                        //  booking = USER only
-                        .requestMatchers(HttpMethod.POST,"/api/appointments/book-slot").hasRole("USER")
-
-                        //  doctor actions
-                        .requestMatchers(HttpMethod.PUT,"/api/appointments/**").hasRole("DOCTOR")
-
-                        //  allow USER to view their appointments
-                        .requestMatchers(HttpMethod.GET,"/api/appointments/**").hasAnyRole("USER","DOCTOR")
-
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
 
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
