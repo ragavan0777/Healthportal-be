@@ -26,29 +26,51 @@ public class SecurityConfig{
 
 
 //cors to allow two portnumbers
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
+//    @Bean
+//    public CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration config = new CorsConfiguration();
+//
+//        config.setAllowCredentials(true);
+//        config.setAllowedOrigins(List.of(
+//                "http://127.0.0.1:5500",
+//                "http://127.0.0.1:5501",
+//                "https://sensational-dragon-7d919c.netlify.app/"
+//
+//        )); // frontend
+//        config.addAllowedHeader("*");
+//        config.addAllowedMethod("*");
+//        config.addAllowedHeader("*");
+//        config.setAllowedMethods(List.of(
+//                "GET","POST","DELETE","OPTIONS"
+//        ));
+//
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", config);
+//
+//        return source;
+//    }
+@Bean
+public CorsConfigurationSource corsConfigurationSource() {
 
-        config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of(
-                "http://127.0.0.1:5500",
-                "http://127.0.0.1:5501",
-                "https://sensational-dragon-7d919c.netlify.app"
+    CorsConfiguration config = new CorsConfiguration();
 
-        )); // frontend
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
-        config.addAllowedHeader("*");
-        config.setAllowedMethods(List.of(
-                "GET","POST","DELETE","OPTIONS"
-        ));
+    config.setAllowCredentials(true);
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
+    config.setAllowedOrigins(List.of(
+            "https://sensational-dragon-7d919c.netlify.app"
+    ));
 
-        return source;
-    }
+    config.setAllowedHeaders(List.of("*"));
+
+    config.setAllowedMethods(List.of(
+            "GET","POST","PUT","DELETE","OPTIONS"
+    ));
+
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", config);
+
+    return source;
+}
 
 
 
@@ -65,6 +87,8 @@ public class SecurityConfig{
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
 
                 .authorizeHttpRequests(auth -> auth
+
+                        .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
 
                         // PUBLIC
                         .requestMatchers("/api/auth/**").permitAll()

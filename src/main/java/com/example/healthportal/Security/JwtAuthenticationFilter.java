@@ -1,5 +1,4 @@
 package com.example.healthportal.Security;
-
 import com.example.healthportal.Model.User;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
