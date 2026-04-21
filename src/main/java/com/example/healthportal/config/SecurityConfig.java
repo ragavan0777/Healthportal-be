@@ -57,6 +57,8 @@ public CorsConfigurationSource corsConfigurationSource() {
     config.setAllowCredentials(true);
 
     config.setAllowedOrigins(List.of(
+            "http://127.0.0.1:5500",
+            "http://127.0.0.1:5501",
             "https://sensational-dragon-7d919c.netlify.app"
     ));
 
