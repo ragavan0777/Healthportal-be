@@ -22,12 +22,12 @@ USER spring:spring
 COPY --from=build /app/target/*.jar app.jar
 
 # Environment variables with sensible defaults
-ENV PORT=5000
-ENV DB_HOST=localhost
-ENV DB_PORT=3306
-ENV DB_NAME=todo_db
-ENV DB_USERNAME=root
-ENV DB_PASSWORD=password
+#ENV PORT=5000
+#ENV DB_HOST=localhost
+#ENV DB_PORT=3306
+#ENV DB_NAME=health_db
+#ENV DB_USERNAME=root
+#ENV DB_PASSWORD=password
 
 # JVM memory limits for small instances (512MB)
 # -XX:MaxRAMPercentage=75.0 ensures Java doesn't use more than 75% of available RAM
