@@ -79,8 +79,8 @@ Slots are generated:
 * For next 7 days
 * Time slots:
 
-  * 10:00 → 13:00
-  * 14:00 → 16:00
+    * 10:00 → 13:00
+    * 14:00 → 16:00
 * Interval: 30 minutes
 
 ---
@@ -126,8 +126,8 @@ http://localhost:2000
 * Stateless session management
 * Role-based endpoints:
 
-  * USER → Book appointments
-  * DOCTOR → Manage appointments
+    * USER → Book appointments
+    * DOCTOR → Manage appointments
 
 ---
 
