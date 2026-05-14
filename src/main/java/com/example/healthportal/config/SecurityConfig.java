@@ -73,6 +73,7 @@ public CorsConfigurationSource corsConfigurationSource() {
 
                         //  allow USER to access patient APIs
                         .requestMatchers("/api/patient/**").hasRole("USER")
+                        .requestMatchers("/api/auth/register-doctor/**").permitAll()
 
                         //  allow both roles
                         .requestMatchers("/api/doctor/getall").hasAnyRole("USER","DOCTOR")
